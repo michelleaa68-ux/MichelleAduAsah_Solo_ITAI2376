@@ -1,0 +1,21 @@
+Requirements 
+
+This project uses only Python standard library modules.
+No external packages are required to run agent.ipynb.
+
+If you extend the project to use an LLM API or database, install below:
+ 
+Uncomment to add LLM support:
+# openai==1.30.1
+# anthropic==0.25.0
+ 
+Uncomment to add database support:
+# sqlalchemy==2.0.30
+ 
+Uncomment to run as a web app:
+# flask==3.0.3
+ 
+Jupyter (is only needed if running locally outside Colab):
+notebook==7.2.0
+ipykernel==6.29.4
+ 
