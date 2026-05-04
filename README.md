@@ -1,8 +1,9 @@
-# MichelleAduAsah_Solo_ITAI2376
+
+---
 
 # MIRA — Multi-Agent Event Decor Intelligence System
 
-A three-agent AI system built for luxury event decor companies that handles client inquiries, creative vision matching, and internal inventory management.
+MIRA is a three-agent AI system built for luxury event decor companies. It handles client questions, creative direction, and internal inventory — all in one place.
 
 ---
 
@@ -12,183 +13,162 @@ Solo Project — Michelle Adu-Asah
 
 ---
 
-## The Problem & Target User
+## The Problem
 
-Planning a luxury event involves multiple touchpoints: clients need quick answers about pricing and logistics, they need help translating their vision into a concrete aesthetic, and behind the scenes, decor workers need to check what inventory is available. Most businesses handle all of this manually, which is slow and inconsistent.
+Planning a luxury event isn’t just one task — it’s a full workflow.
+Clients want quick answers (pricing, booking, logistics), they need help visualizing their event, and internally, workers need access to inventory.
 
-**MIRA** solves this by routing each type of need to a specialized agent — one for client Q&A, one for creative direction, and one for internal warehouse access — all in a single system.
+Most of this is still done manually — which is slow and inconsistent.
 
-**Target users:** Luxury event decor companies and their clients in the Houston metro area.
+MIRA fixes that by splitting everything into three focused agents.
 
----
-
-## Option Chosen
-
-**Option B: Multi-Agent System**
-
-This matches the blueprint submitted in the Midterm. The plan did not change — the three-agent structure (MIRA, MIZEL, MILO) was designed from the start and carried through to implementation.
+**Target users:** Luxury event decor companies and their clients in the Houston area
 
 ---
 
-## Architecture Overview
+## Approach
 
-MIRA is a rule-based multi-agent system with three distinct agents, each with its own role, logic, and access level. When the system starts, the user selects which agent they need. Client-facing agents (MIRA and MIZEL) are open access. The internal agent (MILO) is passcode-protected so only authorized warehouse workers can enter.
+**Multi-Agent System (Option B)**
 
-- **MIRA** handles general client questions using keyword-based intent matching. It covers pricing, appointments, location, delivery, booking, and cancellation policies.
-- **MIZEL** acts as a creative director. Clients describe their event vision in natural language and MIZEL responds with a tailored color scheme and full mood board.
-- **MILO** is a restricted inventory tool for decor workers only. It displays current stock levels and flags items that are running low.
-
-Each agent operates independently — there is no cross-agent communication. The routing logic at the top level determines which agent receives control based on the user's menu selection.
-
-![Architecture Diagram](architecture.png)
+Built exactly from the original plan — three agents (MIRA, MIZEL, MILO), each with a clear role.
 
 ---
 
-## Frameworks and Tools
+## Architecture
 
-- **Language:** Python 3
-- **Platform:** Google Colab (Jupyter Notebook)
-- **LLM / AI Framework:** Rule-based logic (keyword matching and conditional branching — no external LLM API required)
-- **Memory:** In-session inventory dictionary (MILO); stateless for MIRA and MIZEL
-- **Access Control:** Hardcoded passcode for MILO agent
-- **Demo Platform:** builder.io project preview
+MIRA is a rule-based system where users choose their role and get routed to the right agent.
+
+* **MIRA** → Client assistant (pricing, booking, FAQs)
+* **MIZEL** → Creative agent (vision → mood board + colors)
+* **MILO** → Inventory system (workers only, passcode protected)
+
+Each agent runs independently — no overlap, just clean routing.
 
 ---
 
-## Installation
+## Tools & Tech
 
-**Python version:** Python 3.8 or higher
-
-**1. Clone the repository:**
-```bash
-git clone https://github.com/YourUsername/YourRepoName_ITAI2376.git
-cd YourRepoName_ITAI2376
-```
-
-**2. Install dependencies:**
-```bash
-pip install -r requirements.txt
-```
-
-> Note: This project uses only Python standard libraries and requires no external API keys. No `.env` setup is needed to run the base system.
-
-**3. (Optional) Set up environment variables:**
-
-If you extend the project to use an LLM API, copy the example file and fill in your keys:
-```bash
-cp .env.example .env
-```
+* Python 3
+* Google Colab (Jupyter Notebook)
+* Rule-based logic (keyword matching + conditionals)
+* In-session memory (MILO only)
+* Passcode protection for internal access
 
 ---
 
 ## How to Run
 
-**In Google Colab:** Open `agent.ipynb` and run all cells. The system will prompt you in the output cell.
+**Colab:** Open `agent.ipynb` and run the cell
 
-**Locally:**
+**Local:**
+
 ```bash
 jupyter notebook agent.ipynb
 ```
 
-Then run the single code cell. You will see a menu:
+Menu:
 
 ```
-  Choose who is using the system:
-  1 - Client (talk to MIRA)
-  2 - Client (describe vision to MIZEL)
-  3 - Worker (access MILO inventory)
+Choose who is using the system:
+1 - Client (MIRA)
+2 - Client (MIZEL)
+3 - Worker (MILO)
 
-  Enter 1, 2, or 3:
+Enter 1, 2, or 3:
 ```
 
 ---
 
 ## Example Usage
 
-### Example 1 — MIRA (Client Q&A)
+### MIRA — Client Q&A
 
-**Input:** `1` → `How much is a birthday party for 60 people?`
+**Input:**
+
+```
+1
+How much is a birthday party for 60 people?
+```
 
 **Output:**
-```
-=======================================================
-  MIRA — Client Assistant
-=======================================================
-  Client asked: how much is a birthday party for 60 people?
 
-  MIRA says:
-  Our packages start at $2,500 for intimate gatherings. The Elegance package
-  is $2,500–$5,000, the Luxe package is $5,000–$12,000, and the Couture
-  package is fully custom quoted based on your vision and guest count.
+```
+MIRA — Client Assistant
+
+Client asked: how much is a birthday party for 60 people?
+
+Our packages start at $2,500 for intimate gatherings.
+Elegance: $2,500–$5,000  
+Luxe: $5,000–$12,000  
+Couture: custom pricing based on your vision and guest count.
 ```
 
 ---
 
-### Example 2 — MIZEL (Creative Vision)
+### MIZEL — Creative Vision
 
-**Input:** `2` → `I want something royal and grand with blue and gold`
+**Input:**
+
+```
+2
+I want something royal and grand with blue and gold
+```
 
 **Output:**
+
 ```
-=======================================================
-  MIZEL — Creative Visual Agent
-=======================================================
-  Client vision: I want something royal and grand with blue and gold
+MIZEL — Creative Visual Agent
 
-  Suggested color scheme: Royal Blue, Gold, and Crisp White
+Suggested color scheme:
+Royal Blue, Gold, Crisp White
 
-  Mood board:
-  For a grand and regal feel, we recommend deep royal blue linen with bright
-  gold charger plates and white floral centerpieces featuring hydrangeas and
-  white orchids with gold ribbon accents. Tall centerpiece arrangements will
-  create that majestic ballroom atmosphere. Gold candelabras at alternating
-  tables will add drama and elegance.
+Mood direction:
+Deep royal blue linens, gold charger plates, white floral centerpieces
+(hydrangeas + orchids), tall arrangements, and gold candelabras for a
+dramatic, elegant look.
 ```
 
 ---
 
-### Example 3 — MILO (Worker Inventory)
+### MILO — Inventory (Restricted)
 
-**Input:** `3` → passcode: `milo2376`
+**Input:**
+
+```
+3
+Enter passcode: milo2376
+```
 
 **Output:**
+
 ```
-=======================================================
-  MILO — Warehouse Inventory System
-  ** FOR DECOR WORKERS ONLY **
-=======================================================
+MILO — Warehouse Inventory System
+Access granted.
 
-  Access granted. Current inventory:
-
-  ITEM                      IN STOCK
-  -----------------------------------
-  Chairs                    150
-  Tables                    20
-  Charger Plates            200
-  Linen Tablecloths         40
-  Linen Napkins             300
-  Silverware Sets           250
-  Floral Arches             3    <-- LOW STOCK
-  Candelabras               12
-  Uplighting Units          24
-  Flower Wall Panels        8    <-- LOW STOCK
+ITEM                    IN STOCK
+--------------------------------
+Chairs                  150
+Tables                  20
+Charger Plates          200
+Linen Tablecloths       40
+Floral Arches           3   <-- LOW
+Flower Wall Panels      8   <-- LOW
 ```
 
 ---
 
-## Known Limitations
+## Limitations
 
-- **No LLM backbone:** MIRA and MIZEL use keyword matching, not a language model. Questions that don't contain expected keywords fall through to a generic fallback response.
-- **No memory across sessions:** Each run starts fresh. MIRA does not remember previous conversations with a client.
-- **Static inventory:** MILO displays inventory but cannot update it. Workers cannot add, subtract, or edit stock counts without editing the code directly.
-- **Single-user at a time:** The system handles one interaction per run. There is no multi-user or concurrent session support.
-- **Passcode is hardcoded:** The MILO passcode (`milo2376`) is stored in plain text in the notebook. For a production system, this would need to be moved to a secure environment variable.
-- **No appointment booking integration:** MIRA references a phone number and email but cannot actually schedule or confirm appointments.
+* No LLM (keyword-based only)
+* No memory across sessions
+* Inventory is view-only
+* Single-user system
+* Passcode is hardcoded
+* No real booking integration
 
 ---
 
 ## Demo
 
-[Watch the demo here](https://fe5be83cca054a75b5f5d01282c6ab68-main_v2.projects.builder.my)
+[https://fe5be83cca054a75b5f5d01282c6ab68-main_v2.projects.builder.my](https://fe5be83cca054a75b5f5d01282c6ab68-main_v2.projects.builder.my)
 
-The demo covers at least three real-world scenarios: a client pricing inquiry (MIRA), a creative vision consultation (MIZEL), and a worker inventory check (MILO).
