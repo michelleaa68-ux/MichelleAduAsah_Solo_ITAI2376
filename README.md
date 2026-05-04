@@ -28,7 +28,7 @@ MIRA fixes that by splitting everything into three focused agents.
 
 ## Approach
 
-**Multi-Agent System (Option B)**
+**Multi-Agent System**
 
 Built exactly from the original plan — three agents (MIRA, MIZEL, MILO), each with a clear role.
 
