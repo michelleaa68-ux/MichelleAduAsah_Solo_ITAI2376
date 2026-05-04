@@ -1,0 +1,29 @@
+## Reflection
+The three agent structure was honestly the best decision right from the beginning.
+Seperating MIRA, MIZEL and MILO made everything feel clean, well organized and very structured.
+Each agent has their own job that they are responsible for.
+
+MIRA does really well with keyword routing especially for pricing, booking and logistics,
+MIZEL also turned out great in terms of giving useful and specific mood directions based on a client's vision.
+Adding a passcode to MILO made it feel more realistic and clearly sections between company/business internal usage and clients.
+
+The biggest limitation is that everything is keyword based. So let's say a user phrases something differently than expected,
+then the system could miss it and fall back to a generic response. 
+To deal with that, I expanded the keyword lists as much as possible by adding synonyms and different ways people could possibly
+ask the same thing.
+
+The biggest technical challenge I faced was with MIZEL, translating how someone feels about an event into actual visual direction
+is not easy, because it could never be exactly the same as in someone's head.
+
+What helped here was narrowing everything down into few main aestetic categories:
+- romantic / blush
+- royal / grand
+- bold / luxury
+- minimalist / modern
+- garden / white
+
+If I had more time, I would:
+Replace keyword logic with an actual LLM so the system understands any phrasing,
+Connect MILO to a real database so inventory can be updated in real time, 
+Add booking functionality so clients can schedule directly with MIRA
+
