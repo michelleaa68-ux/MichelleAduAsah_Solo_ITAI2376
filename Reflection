@@ -26,4 +26,4 @@ If I had more time, I would:
 Replace keyword logic with an actual LLM so the system understands any phrasing,
 Connect MILO to a real database so inventory can be updated in real time, 
 Add booking functionality so clients can schedule directly with MIRA
-
+I actually planned for MIZEL to have a 3D visualizer and image generator but as I was building I realized it was more complex than I thought 
